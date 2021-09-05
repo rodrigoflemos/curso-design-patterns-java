@@ -1,14 +1,12 @@
 package br.com.alura.loja;
 
-import br.com.alura.loja.orcamento.Orcamento;
 import br.com.alura.loja.pedido.GeraPedido;
 import br.com.alura.loja.pedido.GeraPedidoHandler;
-import br.com.alura.loja.pedido.Pedido;
-import br.com.alura.loja.pedido.acao.EnviarEmailPedido;
-import br.com.alura.loja.pedido.acao.SalvarPedidoNoBancoDeDados;
+import br.com.alura.loja.pedido.acoes.EnviarEmailPedido;
+import br.com.alura.loja.pedido.acoes.LogDePedido;
+import br.com.alura.loja.pedido.acoes.SalvarPedidoNoBancoDeDados;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.Arrays;
 
 public class TestesPedido {
@@ -21,7 +19,7 @@ public class TestesPedido {
         GeraPedido gerador = new GeraPedido(cliente,valorOrcamento,quantidadeItens);
 
         GeraPedidoHandler handler = new GeraPedidoHandler(
-                Arrays.asList(new SalvarPedidoNoBancoDeDados(), new EnviarEmailPedido())
+                Arrays.asList(new SalvarPedidoNoBancoDeDados(), new EnviarEmailPedido(), new LogDePedido())
         );
         handler.execute(gerador);
     }
